@@ -1,17 +1,14 @@
-import Vuex from "vuex";
+export const state = () => ({
+  memos: []
+});
 
-const createStore = () => {
-  return new Vuex.Store({
-    namespace: true,
-    state: {
-      memos: []
-    },
-    mutations: {
-      add(state, item) {
-        state.memos.push(item);
-      }
-    },
-  });
-};
-
-export default createStore;
+export const mutations = {
+  add(state, item) {
+    state.memos.push(item);
+  }
+}
+export const getters = {
+  writtenmemos: state => {
+    return state.memos
+  }
+}

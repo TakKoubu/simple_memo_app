@@ -16,7 +16,6 @@
 export default {
   data: function() {
     return {
-      memos: [],
       newItem: ''
     }
   },
@@ -24,6 +23,12 @@ export default {
     add() {
       this.$store.commit('memos/add', this.newItem)
       this.newItem = ''
+    }
+  },
+  computed: {
+    memos() {
+      // return this.$store.state.todos.todos
+      return this.$store.getters['memos/writtenmemos']
     }
   },
 }
