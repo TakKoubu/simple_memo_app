@@ -6,8 +6,9 @@
         <button>Add</button>
       </form>
     </div>
-    <ul v-for="memo in memos" :key="memo.id">
+    <ul v-for="(memo, index) in memos" :key="index">
       <li>{{ memo }}</li>
+      <button @click="remove(index)">remove</button>
     </ul>
   </section>
 </template>
@@ -23,11 +24,13 @@ export default {
     add() {
       this.$store.commit('memos/add', this.newItem)
       this.newItem = ''
+    },
+    remove(index){
+      this.$store.commit('memos/remove',index)
     }
   },
   computed: {
     memos() {
-      // return this.$store.state.todos.todos
       return this.$store.getters['memos/writtenmemos']
     }
   },
